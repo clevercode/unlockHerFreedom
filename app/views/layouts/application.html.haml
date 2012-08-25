@@ -1,0 +1,66 @@
+!!! 5
+%html
+  %head
+    / %title Unlock Her Freedom - #{@title}
+    %title Unlock Her Freedom
+    = stylesheet_link_tag 'application'
+    = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Lora:400,400italic'
+    = javascript_include_tag 'http://underscorejs.org/underscore-min.js'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+
+  %body
+    %header
+      .wrapper
+        %h1
+          = link_to '/' do
+            Unlock Her Freedom
+        %nav
+          %ul#navigation.group
+            %li.current-menu-item= link_to 'HOME', '/'
+
+    %section#content{ class: @content_class }
+      = yield
+
+    %footer
+      .top-border
+      .wrapper
+        %section.double
+          %article
+            %h1 Books
+            %ul
+              %li
+                %em A Crime So Monstrous
+                &ndash; by E. Benjamin Skinner
+              %li
+                %em The Slave Next Door
+                &ndash; by Kevin Bales & Ron Soodalter
+              %li
+                %em Sex Trafficking: Inside the Business of Modern Slavery
+                &ndash; by Siddharth Kara
+              %li
+                %em Sold
+                &ndash; by Patricia McCormick
+              %li
+                %em Radhika’s Story
+                &ndash; by Sharon Hendry
+              %li
+                %em Not for Sale: The Return of the Global Slave Trade – and how we can fight it
+                &ndash; by David Batstone
+
+          %article
+            %h1 Websites
+            %ul
+              %li= link_to 'http://exoduscry.com/', 'http://exoduscry.com/'
+              %li= link_to 'http://www.polarisproject.org/', 'http://www.polarisproject.org/'
+              %li= link_to 'http://abolitioninternational.org/', 'http://abolitioninternational.org/'
+              %li= link_to 'http://www.oathcoalition.com/', 'http://www.oathcoalition.com/'
+              %li= link_to 'http://www.thea21campaign.org/', 'http://www.thea21campaign.org/'
+              %li= link_to 'http://projectrescue.com/', 'http://projectrescue.com/'
+
+        %p.copy
+          Copyright
+          = link_to 'Unlock Her Freedom', '/'
+          &copy; #{Date.today.year}
+          &ndash; All Rights Reserved.
+

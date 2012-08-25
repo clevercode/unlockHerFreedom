@@ -1,0 +1,75 @@
+#content.home
+  .mantra
+    text-align: center
+    font-size: 24px
+    font-style: italic
+    font-weight: normal
+    font-family: Lora,Georgia,serif
+
+  .gallery
+    margin: 40px 0
+    background: image-url('gallery_bg.png') repeat-x center center
+    
+    ul
+      margin: 0 auto
+      padding: 5px
+      width: 930px
+      height: 370px
+      overflow-y: hidden
+      text-align: center
+      position: relative
+      background-color: #e6e0da
+
+      li
+        width: 100%
+        height: 100%
+        margin: 0 auto
+        position: relative
+        border: 10px solid white
+
+        &.word_map
+          background: image-url('word_map.jpg') no-repeat center center
+
+  section
+    clear: both
+    padding: 30px 0
+    border-top: 1px solid #cfcbc6
+
+    &:after
+      clear: both
+      content: ''
+      display: block
+
+    &.triple article
+      width: 30%
+      float: left
+      margin-right: 3%
+
+    > h1
+      padding: 0 0 10px
+      font-size: 1.6em
+      font-weight: bold
+      text-transform: uppercase
+
+  article
+    width: 47%
+    float: left
+
+    &:nth-of-type(even)
+      float: right
+
+    h1
+      font-size: 1.3em
+      font-weight: bold
+      margin-bottom: 10px
+
+    ul
+      margin: 0
+      padding: 0
+      list-style: disc inside
+
+    p, li
+      font-size: 1.1em
+      margin: 5px 0 10px
+      line-height: 1.6em
+
