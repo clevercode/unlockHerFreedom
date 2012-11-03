@@ -1,16 +1,19 @@
 *
   +box-sizing(border-box)
 
+html
+  background: black image-url('body-bg.jpg') repeat 0 0
+
 body
-  color: #5b5b5b
-  font-size: 12px
-  background: #faf7f4 image-url('body_bg.jpg')
-  font-family: 'Helvetica Neue', Arial, sans-serif
+  +background(radial-gradient(rgba(0,0,0,0.75) 10%, rgba(0,0,0,0)))
+  color: $copy-color
+  font: 10px 'Open Sans', 'Helvetica Neue', Arial, sans-serif
 
   .wrapper
-    width: 940px
+    width: 90%
+    max-width: 94em
     margin: 0 auto
-    padding: 0 20px
+    padding: 0 2em
 
     &:after
       clear: both
@@ -20,11 +23,18 @@ body
   h1, h2, h3, h4, h5, h6
     color: #222
 
+  p
+    font-size: 1.3em
+
   em
     font-style: italic
 
   strong
     font-weight: bold
+
+  a
+    color: $copy-color
+    text-decoration: none
 
   #content
     padding-bottom: 40px

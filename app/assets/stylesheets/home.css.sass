@@ -1,75 +1,94 @@
 #content.home
-  .mantra
-    text-align: left
-    font-size: 24px
-    font-style: italic
-    font-weight: normal
-    font-family: Lora,Georgia,serif
+  #gallery
+    height: 47em
+    margin: 0 0 2em
+    padding: 0 0 2em
+    border-bottom: 1px solid #333
 
-  .gallery
-    margin: 40px 0
-    background: image-url('gallery_bg.png') repeat-x center center
-    
     ul
-      margin: 0 auto
-      padding: 5px
-      width: 930px
-      height: 370px
-      overflow-y: hidden
-      text-align: center
-      position: relative
-      background-color: #e6e0da
+      height: 100%
 
       li
-        width: 100%
         height: 100%
-        margin: 0 auto
-        position: relative
-        border: 10px solid white
+        display: block
+        background: image-url('word_map.jpg') no-repeat center center
+        background-size: cover
 
-        &.word_map
-          background: image-url('word_map.jpg') no-repeat center center
+  h1.mantra
+    margin: 0 0 0.8em
+    padding: 0 0 0.8em
+    border-bottom: 1px solid #333
+    color: white
+    font-size: 2.5em
+    font-weight: bold
+    line-height: 1.5em
+    text-align: center
+    text-transform: uppercase
+
+    strong
+      background: $highlight
 
   section
-    clear: both
-    padding: 30px 0
-    border-top: 1px solid #cfcbc6
+    margin: 0 0 2em
+    padding: 0 0 5em
+    border-bottom: 1px solid #333
 
     &:after
       clear: both
       content: ''
       display: block
 
-    &.triple article
-      width: 30%
-      float: left
-      margin-right: 3%
+    > article
+      > h1
+        margin-bottom: 1em
+        color: #555
+        font-size: 1.3em
+        font-weight: bold
+        text-transform: uppercase
 
-    > h1
-      padding: 0 0 10px
-      font-size: 1.6em
-      font-weight: bold
-      text-transform: uppercase
+      li
+        font-size: 1.3em
+        list-style-position: outside
+        list-style-type: square
 
-  article
-    width: 47%
+      p, li
+        font-weight: 100
+        line-height: 2em
+
+      a
+        float: left
+        display: block
+        margin-top: 1.0909em
+        padding: 4px 6px
+        background: $highlight
+        +border-radius(3px)
+        font-size: 1.1em
+        font-weight: bold
+        text-transform: uppercase
+        +transition(background-color 200ms ease-out)
+
+        &:hover
+          background: #333
+          color: white
+          +transition(background-color 100ms ease-in)
+
+        &:active
+          background-color: $copy-color
+          color: #0a0a0a
+          +transition(background-color 50ms ease-in)
+
+  section.double > article
     float: left
+    width: 47.5%
+    margin-right: 5%
 
     &:nth-of-type(even)
-      float: right
+      margin-right: 0
 
-    h1
-      font-size: 1.3em
-      font-weight: bold
-      margin-bottom: 10px
+  section.quad > article
+    float: left
+    width: 21.25%
+    margin-right: 5%
 
-    ul
-      margin: 0
-      padding: 0
-      list-style: disc inside
-
-    p, li
-      font-size: 1.1em
-      margin: 5px 0 10px
-      line-height: 1.6em
-
+    &:nth-of-type(4n)
+      margin-right: 0

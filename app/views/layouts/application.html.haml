@@ -10,21 +10,23 @@
     = csrf_meta_tags
 
   %body
-    %header
-      .wrapper
+    .wrapper
+      %header
         %h1
           = link_to '/' do
             Unlock Her Freedom
         %nav
-          %ul#navigation.group
-            %li.current-menu-item= link_to 'HOME', '/'
+          %ul
+            %li= link_to 'Donate', '/'
+            %li= link_to 'Why We Fight', '/'
+            %li= link_to 'What We Do', '/'
+            %li= link_to 'Who We Are', '/'
+            %li= link_to 'Home', '/'
 
-    %section#content{ class: @content_class }
-      = yield
+      %section#content{ class: @content_class }
+        = yield
 
-    %footer
-      .top-border
-      .wrapper
+      %footer
         %section.double
           %article
             %h1 Books
