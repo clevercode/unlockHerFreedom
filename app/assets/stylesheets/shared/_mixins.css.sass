@@ -1,0 +1,31 @@
+=bottom-border
+  border-bottom: 1px solid #000
+  +box-shadow(rgba(255,255,255,0.15) 0 1px 0)
+
+=ellipsize
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
+
+=buttonify
+  float: right
+  display: block
+  margin-top: 1.0909em
+  padding: 4px 6px
+  background: $button-bg
+  +border-radius(3px)
+  color: $button-text
+  font-size: 1.1em
+  font-weight: bold
+  text-transform: uppercase
+  +transition(background-color 200ms ease-out)
+
+  &:hover, &:focus
+    background: $button-hover
+    color: $button-hover-text
+    +transition(background-color 100ms ease-in)
+
+  &:active
+    background-color: $button-active
+    color: $button-active-text
+    +transition(background-color 50ms ease-in)

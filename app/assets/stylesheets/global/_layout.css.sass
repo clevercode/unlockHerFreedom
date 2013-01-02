@@ -2,10 +2,12 @@
   +box-sizing(border-box)
 
 html
+  height: 100%
   background: black image-url('body-bg.jpg') repeat 0 0
 
 body
-  +background(radial-gradient(rgba(0,0,0,0.75) 10%, rgba(0,0,0,0)))
+  min-height: 100%
+  +box-shadow(transparentize($brown, 0.5) 0 50px 1000px 10px inset, transparentize($brown, 0) 0 -50px 500px -100px inset)
   color: $copy-color
   font: 10px 'Open Sans', 'Helvetica Neue', Arial, sans-serif
 
@@ -36,6 +38,28 @@ body
     color: $copy-color
     text-decoration: none
 
-  #content
-    padding-bottom: 40px
+  #darknessification
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    z-index: 10
+    position: fixed
+    display: none
+    background: rgba(0,0,0,0.5)
 
+  .flash
+    top: 0
+    left: 0
+    right: 0
+    z-index: 5
+    position: fixed
+    padding: 0.75em 1em
+    background: $green
+    border-bottom: 1px solid rgba(0,0,0,0.85)
+    +box-shadow(rgba(255,255,255,0.5) 0 -1px 0 0 inset)
+    cursor: pointer
+    font-size: 1.3em
+
+    &.alert
+      background: $highlight

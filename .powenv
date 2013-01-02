@@ -1,0 +1,12 @@
+export PATH ; PATH="/Users/Solitude/.rvm/gems/ruby-1.9.3-p327/bin:/Users/Solitude/.rvm/gems/ruby-1.9.3-p327@global/bin:/Users/Solitude/.rvm/rubies/ruby-1.9.3-p327/bin:/Users/Solitude/.rvm/bin:$PATH"
+export rvm_env_string ; rvm_env_string='ruby-1.9.3-p327'
+export rvm_path ; rvm_path='/Users/Solitude/.rvm'
+export rvm_ruby_string ; rvm_ruby_string='ruby-1.9.3-p327'
+unset rvm_gemset_name
+export RUBY_VERSION ; RUBY_VERSION='ruby-1.9.3-p327'
+export GEM_HOME ; GEM_HOME='/Users/Solitude/.rvm/gems/ruby-1.9.3-p327'
+export GEM_PATH ; GEM_PATH='/Users/Solitude/.rvm/gems/ruby-1.9.3-p327:/Users/Solitude/.rvm/gems/ruby-1.9.3-p327@global'
+export MY_RUBY_HOME ; MY_RUBY_HOME='/Users/Solitude/.rvm/rubies/ruby-1.9.3-p327'
+export IRBRC ; IRBRC='/Users/Solitude/.rvm/rubies/ruby-1.9.3-p327/.irbrc'
+unset MAGLEV_HOME
+unset RBXOPT

@@ -1,0 +1,104 @@
+form
+  padding: 1.5em
+  background-color: rgba(0,0,0,0.25)
+  +box-shadow(rgba(0,0,0,0.75) 1px 1px 0 0 inset, rgba(255,255,255,0.15) -1px -1px 0 0 inset)
+  overflow: hidden
+
+  div[class*=column]
+    li
+      float: left
+      width: 100%
+
+      input[type=text], input[type=email], label, textarea
+        width: 100%
+        display: block
+
+    &[class=two-column]
+      li
+        width: 48%
+        margin-right: 4%
+
+        &:nth-of-type(2)
+          margin-right: 0
+
+    &[class=three-column]
+      li
+        width: 31%
+        margin-right: 3.5%
+
+        &:nth-of-type(3)
+          margin-right: 0
+
+
+  li
+    margin-bottom: 0.75em
+    font-size: 1.5em
+    list-style: none !important
+
+    &.error
+      display: none
+      text-align: right
+
+    &.action
+      float: right
+      position: relative
+      margin: 25px 0 0
+
+      input, button
+        float: right
+
+      #spinner
+        right: 9em
+        bottom: 1.3em
+        position: absolute
+
+      a
+        float: left
+        margin: 0
+        padding: 0.5em 0 0
+        color: tint($highlight, 60%)
+        font-size: 1em
+        font-weight: normal
+        text-transform: none
+
+        &:hover, &:focus, &:active
+          background: none
+          color: white
+
+    textarea
+      line-height: 1.5em
+      resize: none
+
+    input, textarea
+      padding: 0.4em
+      border: 1px solid rgba(0,0,0,0.75)
+      +border-radius(4px)
+      font-size: 1.1em
+
+      &.error
+        border: 1px solid $highlight
+        +box-shadow($highlight 0 0 10px 0 inset)
+
+      &[type=text]:focus
+        +box-shadow(rgba(255,255,255,0.5) 0 0 3px 1px)
+        outline: none
+
+    input[type=submit], button
+      padding: 0.5em 1em
+      +background(linear-gradient($highlight, shade($highlight, 15%)))
+      border: 1px solid rgba(0,0,0,0.75)
+      +border-radius(5px)
+      +box-shadow(rgba(255,255,255,0.15) 1px 1px 0, rgba(255,255,255,0.3) 1px 1px 0 0 inset)
+      color: white
+      cursor: pointer
+      font-size: 1em
+      font-weight: normal
+      text-shadow: rgba(0,0,0,0.4) -1px -1px 0
+
+      &:hover, &:focus
+        +background(linear-gradient(tint($highlight, 10%), tint(shade($highlight, 15%), 3%)))
+        outline: none
+
+      &:active
+        background: shade($highlight, 25%)
+        +box-shadow(rgba(0,0,0,0.75) 0 0 10px 1px inset, rgba(255,255,255,0.15) 1px 1px 0)
