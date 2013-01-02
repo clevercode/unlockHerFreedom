@@ -4,6 +4,7 @@ gem 'rails', '3.2.8'
 
 group :development, :test do
   gem 'sqlite3'
+  gem "mailcatcher", "~> 0.5.10"
 end
 
 group :production do
@@ -23,4 +24,3 @@ gem 'jquery-rails', '~> 2.0.2'
 gem 'haml-rails',   '~> 0.3.4'
 gem 'formtastic',   '~> 2.2.1' # Semantic Form Helper
 gem 'stripe'
-gem "mailcatcher", "~> 0.5.10"
