@@ -5,7 +5,7 @@ class AdminMailer < ActionMailer::Base
     @message = message
     mail(
       from: "#{@message.messenger_name} <#{@message.messenger_email}>",
-      subject: 'Message for the UHF team.'
+      subject: 'Message for the UHF team'
     )
   end
 end
