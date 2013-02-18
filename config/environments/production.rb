@@ -65,6 +65,10 @@ Unlockherfreedom::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
+  # Stripe API Keys
+  Stripe.api_key = 'sk_test_pkYrxOwcllOb6vdHh09wZc0I'
+
+  # Mailgun Settings
   ActionMailer::Base.smtp_settings = {
     :port           => ENV['MAILGUN_SMTP_PORT'], 
     :address        => ENV['MAILGUN_SMTP_SERVER'],
