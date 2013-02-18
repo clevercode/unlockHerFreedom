@@ -22,29 +22,48 @@ jQuery ->
 
   # Grabs our public API key from the meta tag
   Stripe.setPublishableKey $('meta[name="stripe-key"]').attr 'content'
-  donations.setupForm()
+  app.setupForms()
 
-donations =
-  setupForm: ->
-    @form = $('#new_payment')
+app =
+  setupForms: ->
     @attachEventListeners()
 
   attachEventListeners: ->
-    @form.on 'submit', $.proxy @, '_onDonationSubmit'
+    $(window).on 'submit', '#new_message', $.proxy @, '_onMessageFormSubmit'
+    $(window).on 'submit', '#new_payment', $.proxy @, '_onDonationFormSubmit'
 
   # event handlers
   # 
 
-  _onDonationSubmit: (event) ->
+  _onMessageFormSubmit: (event) ->
+    @form = $(event.currentTarget)
     @form.find('.inline-hints').hide().text ''
     @form.find('input[type=submit]').attr 'disabled', true
-    @_checkFields()
+    errorsExist = @_checkMessageFields()
+    off if errorsExist?
+
+  _onDonationFormSubmit: (event) ->
+    @form = $(event.currentTarget)
+    @form.find('.inline-hints').hide().text ''
+    @form.find('input[type=submit]').attr 'disabled', true
+    @_checkDonationFields()
     off
 
   # private
   # 
 
-  _checkFields: ->
+  _checkMessageFields: ->
+    errors = undefined
+    for input in @form.find 'input, textarea'
+      $input = $(input).removeClass 'error'
+      if $input.val().length < 1
+        @_throwError $input
+        errors = true
+        break
+
+    errors
+
+  _checkDonationFields: ->
     errors = undefined
     for input in @form.find '#payment_amount, #payment_email'
       $input = $(input).removeClass 'error'

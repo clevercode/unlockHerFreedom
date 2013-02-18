@@ -13,22 +13,17 @@
 
     %article
       %h1 Contact Us
-      %form
-        %ol.inputs
+      = semantic_form_for Message.new do |f|
+        = f.inputs do
           .two-column
-            %li.input
-              %label(for="contact-name") Your Name
-              %input(id="contact-name" name="contact-name" placeholder="First Last" type="text")
-
-            %li.input
-              %label(for="contact-email") Your Email Address
-              %input(id="contact-email" name="contact-email" placeholder="example@domain.com" type="text")
+            = f.input :messenger_name, hint: 'required', placeholder: 'First Last', label: 'Name'
+            = f.input :messenger_email, hint: 'required', placeholder: 'name@example.com', label: 'Email'
 
           .one-column
-            %li.input
-              %textarea(name="contact-message" placeholder="Your message")
+            = f.input :content, hint: 'required', placeholder: 'Your message', label: 'Message', input_html: { rows: '4' }
 
-        %ol.actions
+        = f.actions do
+          = f.action :submit, label: 'Send Message'
 
   %p.copy
     Copyright

@@ -49,14 +49,12 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(params[:message])
 
-    respond_to do |format|
-      if @message.save
-        format.html { redirect_to @message, notice: 'Message was successfully created.' }
-        format.json { render json: @message, status: :created, location: @message }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
-      end
+    if @message.save
+      # Tell the AdminMailer to send a message after save
+      AdminMailer.message_email(@message).deliver
+      redirect_to root_path, flash: { notice: 'Your message has been sent.' }
+    else
+      redirect_to root_path, flash: { alert: 'Sorry, something went wrong. Please try again.' }
     end
   end
 

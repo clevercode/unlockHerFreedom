@@ -51,7 +51,10 @@ form
 
     textarea
       line-height: 1.5em
-      resize: none
+      resize: vertical
+
+      &:focus
+        outline: none
 
     input, textarea
       padding: 0.4em
@@ -65,7 +68,7 @@ form
 
       &.error
         border: 1px solid red
-        +box-shadow(red 0 0 3px 1px inset)
+        +box-shadow(red 0 0 3px)
 
     input[type=submit], .stripe-button
       padding: 0.5em 1em
