@@ -53,12 +53,12 @@ class PaymentsController < ApplicationController
     )
 
     if charge.id
-      # Tell the UserMailer to send a welcome Email after save
+      # Tell the UserMailer to send a confirmation email after save
       UserMailer.confirmation_email(@payment).deliver
 
-      redirect_to '/', flash: { notice: 'Thank you for your donation! You\'ll recieve an email confirmation shortly.' }
+      redirect_to root_path, flash: { notice: 'Thank you for your donation! You\'ll recieve an email confirmation shortly.' }
     else
-      redirect_to '/', flash: { alert: 'Sorry, there was problem with your donation. Please try again.' }
+      redirect_to root_path, flash: { alert: 'Sorry, there was problem with your donation. Please try again.' }
     end
   end
 
