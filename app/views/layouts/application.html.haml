@@ -6,7 +6,7 @@
     = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Lora:400,400italic'
     = javascript_include_tag 'https://js.stripe.com/v1/', 'http://checkout.stripe.com/v2/checkout.js', 'http://underscorejs.org/underscore-min.js', 'application'
     = csrf_meta_tags
-    %meta{ name: 'stripe-key', content: STRIPE_PUBLIC_KEY }
+    %meta{ name: 'stripe-key', content: ENV['STRIPE_PUBLIC_KEY'] }
     %meta{ name: 'viewport', content: 'initial-scale=1, maximum-scale=1' }
 
   %body
