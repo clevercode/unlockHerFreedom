@@ -2,11 +2,26 @@
 %html
   %head
     %meta(charset='utf-8')
+    :css
+      body {
+        margin: 0;
+        padding: 5px 20px;
+        background: #f8f8fc;
+        border: 20px solid white;
+        font: 14px/1.5 'Helvetica Neue', Helvetica, Arial, Verana, sans-serif;
+      }
 
-  %body{style: 'font: 62.5%/1.4 Verdana, sans-serif; margin: 0px; background: #f9f9ff;'}
-    %h1 Thank you for your donation, #{@payment.name}.
+      p.name {
+        font-size: 15px;
+      }
+
+  %body
+    %p.name #{@payment.name},
+    %p
+      Thank you for your donation! You can use this email as a reciept for your
+      tax-deductible donation. It is with your help that we are able to be the
+      voice for those who can’t. We couldn’t do what we do without supporters
+      like you. So again, thank you.
+    
     %br
-    %p Your payment of #{@payment.amount} has been successfully processed.
-    %p To login to the site, just follow this link: #{@url}.
-    %br
-    %p Thanks for joining and have a great day!
+    %p It is for freedom...

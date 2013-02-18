@@ -1,9 +1,8 @@
 class UserMailer < ActionMailer::Base
-  default from: "UHF Mail <mail@unlockherfreedom.com>"
+  default from: "UHF Donations <donations@unlockherfreedom.com>"
 
   def confirmation_email(payment)
     @payment = payment
-    @url  = 'http://unlockherfreedom.com/'
-    mail(:to => payment.email, :subject => "Your payment has been successfully processed.")
+    mail(:to => payment.email, :subject => "Thank you for your donation.")
   end
 end
