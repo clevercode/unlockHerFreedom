@@ -1,9 +1,9 @@
 class PaymentsController < ApplicationController
 
-  before_filter :redirect_to_home, only: [:new, :index, :show, :edit, :update, :show]
+  before_filter :redirect_to_home, except: [:create]
 
   def redirect_to_home
-    redirect_to '/'
+    redirect_to root_path
   end
 
   def index

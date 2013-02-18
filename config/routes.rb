@@ -1,8 +1,7 @@
 Unlockherfreedom::Application.routes.draw do
   
-  resources :conversations
-
   resources :payments
+  resources :messages
 
   root to: 'pages#home'
   match 'who' => 'pages#who'
