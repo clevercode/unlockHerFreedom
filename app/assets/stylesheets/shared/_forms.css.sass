@@ -31,39 +31,23 @@ form
 
 
   li
-    margin-bottom: 0.75em
+    margin-bottom: 1em
     font-size: 1.5em
     list-style: none !important
 
-    &.error
-      display: none
-      text-align: right
-
     &.action
       float: right
-      position: relative
-      margin: 25px 0 0
+      margin: 0
 
       input, button
         float: right
 
-      #spinner
-        right: 9em
-        bottom: 1.3em
-        position: absolute
-
-      a
-        float: left
-        margin: 0
-        padding: 0.5em 0 0
-        color: tint($highlight, 60%)
-        font-size: 1em
-        font-weight: normal
-        text-transform: none
-
-        &:hover, &:focus, &:active
-          background: none
-          color: white
+    .inline-hints
+      display: none
+      color: red
+      font-size: 1em
+      text-align: right
+      text-shadow: black 0 1px 0
 
     textarea
       line-height: 1.5em
@@ -74,21 +58,21 @@ form
       border: 1px solid rgba(0,0,0,0.75)
       +border-radius(4px)
       font-size: 1.1em
+      +italic-placeholders()
 
-      &.error
-        border: 1px solid $highlight
-        +box-shadow($highlight 0 0 10px 0 inset)
-
-      &[type=text]:focus
-        +box-shadow(rgba(255,255,255,0.5) 0 0 3px 1px)
+      &[type=email]:focus, &[type=text]:focus
         outline: none
 
-    input[type=submit], button
+      &.error
+        border: 1px solid red
+        +box-shadow(red 0 0 3px 1px inset)
+
+    input[type=submit], .stripe-button
       padding: 0.5em 1em
       +background(linear-gradient($highlight, shade($highlight, 15%)))
-      border: 1px solid rgba(0,0,0,0.75)
+      border: 1px solid rgba(0,0,0,0.85)
       +border-radius(5px)
-      +box-shadow(rgba(255,255,255,0.15) 1px 1px 0, rgba(255,255,255,0.3) 1px 1px 0 0 inset)
+      +box-shadow(rgba(255,255,255,0.05) 1px 1px 0, rgba(255,255,255,0.3) 1px 1px 0 0 inset)
       color: white
       cursor: pointer
       font-size: 1em
@@ -100,5 +84,6 @@ form
         outline: none
 
       &:active
-        background: shade($highlight, 25%)
-        +box-shadow(rgba(0,0,0,0.75) 0 0 10px 1px inset, rgba(255,255,255,0.15) 1px 1px 0)
+        top: 1px
+        position: relative
+        +box-shadow(rgba(0,0,0,0.25) 0 0 5px 1px inset, rgba(255,255,255,0.05) 1px 1px 0)

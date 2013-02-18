@@ -39,16 +39,17 @@ class PaymentsController < ApplicationController
 
   def create
     @payment = Payment.new(params[:payment])
+    @payment.name = params[:name]
 
     # get the credit card details submitted by the form
     token = params[:stripeToken]
 
     # create the charge on Stripe's servers - this will charge the user's card
     charge = Stripe::Charge.create(
-      :amount => params[:amount], # amount in cents
+      :amount => @payment.amount, # amount in cents
       :currency => "usd",
       :card => token,
-      :description => "#{params[:name]}: #{params[:email]}"
+      :description => "#{@payment.name}: #{@payment.email}"
     )
 
     if charge.id

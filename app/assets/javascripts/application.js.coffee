@@ -16,193 +16,96 @@ jQuery ->
   # Handles flash notices
   $('.notice').on 'click', ->
     $notice = $ event.currentTarget
-    $notice.fadeOut -> $notice.remove()
-
-  # Handles clicks on our overlay
-  $('#darknessification').on 'click', ->
-    $('#darknessification, #new_payment .card-info').hide()
+    $notice.fadeOut 200, -> $notice.remove()
 
   # Grabs our public API key from the meta tag
   Stripe.setPublishableKey $('meta[name="stripe-key"]').attr 'content'
-  payment.setupForm()
+  donations.setupForm()
 
-payment =
+donations =
   setupForm: ->
-    payment.attachEventListeners()
+    @form = $('#new_payment')
+    @attachEventListeners()
 
   attachEventListeners: ->
-    $('#new_payment button').on 'click', payment.onButtonClick
-    $('#new_payment a.cancel').on 'click', payment.onCancelClick
-    $('#new_payment #card-number').on 'keyup', payment.onCardKeyUp
-    $('#new_payment #card-number').on 'blur', payment.onCardBlur
-    $('#new_payment').on 'keypress', payment.onKeyPress
-    $('#new_payment').on 'submit', payment.onSubmit
+    @form.on 'submit', $.proxy @, '_onDonationSubmit'
 
-  onButtonClick: ->
-    $($('#new_payment li.error')[0]).hide().text ''
-    payment.checkRequiredFields()
+  # event handlers
+  # 
+
+  _onDonationSubmit: (event) ->
+    @form.find('.inline-hints').hide().text ''
+    @form.find('input[type=submit]').attr 'disabled', true
+    @_checkFields()
     off
 
-  onCancelClick: ->
-    $('#darknessification').click()
-    off
+  # private
+  # 
 
-  onCardKeyUp: (event) ->
-    $input = $(event.currentTarget)
-    value  = $input.val().split('-').join ''
-
-    # Unless we're deleting characters
-    unless event.keyCode is 8
-      length = value.length
-
-      # If there is text
-      if length > 3 and length < 13 and length % 4 is 0
-        $input.attr 'value', $input.val() + '-'
-
-    # visa
-    if /^4[0-9]{12}(?:[0-9]{3})?$/.test value
-      $input.css backgroundPosition: '3px -37px'
-
-    # mastercard
-    else if /^5[1-5][0-9]{14}$/.test value
-      $input.css backgroundPosition: '3px -77px'
-
-    # discover
-    else if /^6(?:011|5[0-9]{2})[0-9]{12}$/.test value
-      $input.css backgroundPosition: '3px -117px'
-
-    # american express
-    else if /^3[47][0-9]{13}$/.test value
-      $input.css backgroundPosition: '3px -157px'
-
-    # no known card
-    else
-      $input.css backgroundPosition: '3px 3px'
-
-  onCardBlur: (event) ->
-    $input   = $(event.currentTarget)
-    value    = $input.val().split('-').join ''
-    length   = value.length
-    newValue = ''
-
-    if length > 3
-      for character, i in value
-        newValue += character
-        newValue += '-' if i % 4 is 3 and i < 13
-
-      $input.attr 'value', newValue
-
-  onKeyPress: (event) ->
-    if event.keyCode is 13 and $('#new_payment .card-info').css('display') is 'none'
-      $('#new_payment button').click()
-      off
-
-  onSubmit: ->
-    $('input[type=submit]').attr 'disabled', true
-    $('#new_payment').find('.card-info li.error').hide().text ''
-    payment.processCard()
-    off
-
-  checkRequiredFields: ->
-    $form  = $('#new_payment')
+  _checkFields: ->
     errors = undefined
-    for input in $form.find '#amount, #name, #email'
+    for input in @form.find '#payment_amount, #payment_email'
       $input = $(input).removeClass 'error'
       if $input.val().length < 1
-        payment.throwError $input
+        @_throwError $input
         errors = true
         break
 
+    # If all inputs have something in them
     unless errors?
-      amount = $form.find('#amount').val()
-      amount = amount.replace '$', ''
+      $amount = @form.find '#payment_amount'
+      amount = $amount.val().replace '$', ''
+      amount = amount.replace /,/g, ''
+
+      # If it's a valid currency entry
       if /[0-9]+\.[0-9][0-9](?:[^0-9]|$)/.test amount
-        amount = amount.replace '.', ''
+        amount = amount.replace /\./g, ''
+
+        # If it's less than 50 cents
         if amount < 50
           errors = true
-          payment.throwError $form.find('#amount'), 'Please enter an amount over 50¢.'
+          @_throwError $amount, 'Please enter over 50¢.'
 
+        # If it's a million dollars or more
         else if amount > 99999999
           errors = true
-          payment.throwError $form.find('#amount'), 'Please enter an amount under $1,000,000.00.'
+          @_throwError $amount, 'Sorry, UHF cannot process donations over $1,000,000.00.'
 
+        # If it's an acceptable, valid amount, store it on the input
         else
-          $form.find('#amount').attr 'data-value', amount
+          $amount.attr 'data-value', amount
 
+      # If it's an invalid amount
       else
         errors = true
-        payment.throwError $form.find('#amount'), 'Invalid amount.'
+        @_throwError $amount, 'Invalid amount. Ex: 5.00'
 
-    payment.showCardInfo() unless errors?
+    # Show the stripe form unless we came across some problems
+    @_showStripeForm() unless errors?
 
-  showCardInfo: ->
-    $('#darknessification').show()
-    $cardInfo = $('#new_payment .card-info')
-    $cardInfo.show()
-    left = $(window).width()/2 - $cardInfo.outerWidth()/2
-    top  = $(window).height()/2 - $cardInfo.outerHeight()/2
-    $cardInfo.css top: top, left: left
-    $($cardInfo.find('input')[0]).focus()
+  _showStripeForm: ->
+    StripeCheckout.open
+      key: $('meta[name="stripe-key"]').attr 'content'
+      amount: @form.find('#payment_amount').data 'value'
+      name: 'Unlock Her Freedom'
+      description: "Donation (#{@form.find('#payment_amount').val()})"
+      panelLabel: 'Donate'
+      token: $.proxy @, '_handleStripeResponse'
+      image: '/128x128.png'
 
-  processCard: ->
-    payment.showLoader()
-    card =
-      number:    $("#card-number").val().split('-').join ''
-      cvc:       $('#card-cvc').val()
-      exp_month: $('#card-expiry-month').val()
-      exp_year:  $('#card-expiry-year').val()
+  _handleStripeResponse: (response) ->
+    newFields = """
+      <input type="hidden" name="stripeToken" value="#{response.id}" />
+      <input type="hidden" name="name" value="#{response.card.name}" />
+    """
 
-    Stripe.createToken card, payment.handleStripeResponse
+    amount = @form.find('#payment_amount').data 'value'
+    @form.find('#payment_amount').attr 'value', amount
+    @form.append newFields
+    @form[0].submit()
 
-  showLoader: ->
-    options =
-      lines:     9         # The number of lines to draw
-      length:    5         # The length of each line
-      width:     3         # The line thickness
-      radius:    5         # The radius of the inner circle
-      corners:   1         # Corner roundness (0..1)
-      rotate:    0         # The rotation offset
-      color:     '#fff'    # #rgb or #rrggbb
-      speed:     1         # Rounds per second
-      trail:     60        # Afterglow percentage
-      shadow:    false     # Whether to render a shadow
-      hwaccel:   false     # Whether to use hardware acceleration
-      className: 'spinner' # The CSS class to assign to the spinner
-      zIndex:    2e9       # The z-index (defaults to 2000000000)
-      top:       'auto'    # Top position relative to parent in px
-      left:      'auto'    # Left position relative to parent in px
-
-    target  = $('#spinner')[0]
-    spinner = new Spinner(options).spin target
-
-  handleStripeResponse: (status, response) ->
-    $('#spinner').empty()
-    $form = $('#new_payment')
-
-    if status is 200
-      token = """
-        <input type="hidden" name="stripeToken" value="#{response['id']}" />
-      """
-
-      amount = $form.find('#amount').data 'value'
-      $form.find('#amount').attr 'value', amount
-      $form.append token
-      $form[0].submit()
-
-    else
-      errorMessage = response.error.message
-      if errorMessage.search('exp_month') > -1
-        errorMessage = 'Invalid expiration month.'
-
-      else if errorMessage.search('exp_year') > -1
-        errorMessage = 'Invalid expiration year.'
-
-      $error = $form.find '.card-info li.error'
-      $error.show().text errorMessage
-      $submit = $form.find 'input[type=submit]'
-      $submit.attr 'disabled', false
-      $submit.removeAttr 'disabled'
-
-  throwError: ($input, message = 'Required.') ->
-    $($('#new_payment li.error')[0]).show().text message
-    $input.addClass 'error'
+  # Shows the error message and adds a class of error
+  _throwError: ($input, message = 'Required.') ->
+    @form.find('input[type=submit]').attr 'disabled', false
+    $input.siblings('.inline-hints').show().text message
+    $input.focus().addClass 'error'

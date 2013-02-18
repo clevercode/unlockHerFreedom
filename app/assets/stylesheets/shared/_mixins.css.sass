@@ -29,3 +29,20 @@
     background-color: $button-active
     color: $button-active-text
     +transition(background-color 50ms ease-in)
+
+=italic-placeholders()
+  &::-webkit-input-placeholder
+    font-family: Georgia
+    font-style: italic
+
+  &:-moz-placeholder
+    font-family: Georgia
+    font-style: italic
+
+  &::-moz-placeholder
+    font-family: Georgia
+    font-style: italic
+
+  &:-ms-input-placeholder
+    font-family: Georgia
+    font-style: italic
