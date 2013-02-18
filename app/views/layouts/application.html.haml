@@ -4,9 +4,9 @@
     %title #{@title} - Unlock Her Freedom
     = stylesheet_link_tag 'application'
     = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Lora:400,400italic'
-    = javascript_include_tag 'https://js.stripe.com/v1/', 'http://underscorejs.org/underscore-min.js', 'application'
+    = javascript_include_tag 'https://js.stripe.com/v1/', 'http://checkout.stripe.com/v2/checkout.js', 'http://underscorejs.org/underscore-min.js', 'application'
     = csrf_meta_tags
-    / %meta{ name: 'stripe-key', content: STRIPE_PUBLIC_KEY }
+    %meta{ name: 'stripe-key', content: STRIPE_PUBLIC_KEY }
     %meta{ name: 'viewport', content: 'initial-scale=1, maximum-scale=1' }
 
   %body
@@ -17,94 +17,8 @@
       .flash.notice= flash[:notice]
 
     .wrapper
-      %header
-        %h1
-          = link_to '/' do
-            Unlock Her Freedom
-        %nav
-          %ul
-            %li= link_to_unless_current 'Home', root_path
-            %li= link_to_unless_current 'Who We Are', who_path
-            %li= link_to_unless_current 'What We Do', what_path
-            %li= link_to_unless_current 'Why We Fight', why_path
-            %li= link_to_unless_current 'Get Involved', involved_path
-
-      %section#content{ class: @content_class }
-        = yield
-
-      %footer
-        / %section.double
-        /   %article
-        /     %h1 Make a Donation
-        /     = form_for Payment.new do |f|
-        /       %ol.inputs
-        /         %li.error
-        /         .two-column
-        /           %li.input
-        /             / = f.label :name, title: 'Your Name'
-        /             / = f.text_field :name, placeholder: 'First Last'
-        /             %label(for="name") Your Name
-        /             %input(id="name" name="name" placeholder="First Last" size="25" type="text")
-
-        /           %li.input
-        /             / = f.label :email, title: 'Your Email Address'
-        /             / = f.email_field :name, placeholder: 'example@domain.com'
-        /             %label(for="email") Your Email Address
-        /             %input(id="email" name="email" placeholder="example@domain.com" size="25" type="email")
-
-        /         .two-column
-        /           %li.input
-        /             %label(for="amount") Donation Amount
-        /             %input(id="amount" name="amount" placeholder="100.00" size="6" type="text")
-
-        /           %li.action
-        /             %button(type="button") Continue
-
-        /       .card-info
-        /         %ol.inputs
-        /           %li.error
-        /           %li.input
-        /             %label(for="card-number") Card Number
-        /             %input(id="card-number" maxlength="19" placeholder="0000000000000000" size="24" type="text")
-
-        /           %li.input
-        /             %label(for="card-expiry-month") Expiration
-        /             %input(id="card-expiry-month" maxlength="2" placeholder="MM" size="1" type="text")
-        /             %span /
-        /             %input(id="card-expiry-year" maxlength="4" placeholder="YYYY" size="3" type="text")
-        /             %label(for="card-cvc") CVC
-        /             %input(id="card-cvc" maxlength="4" placeholder="0000" size="4" type="text")
-
-        /         %ol.actions
-        /           %li.action
-        /             #spinner
-        /             %a.cancel(href="/") cancel
-        /             %input(name="payment-submit" type="submit" value="Donate Now")
-
-        /   %article
-        /     %h1 Contact Us
-        /     %form
-        /       %ol.inputs
-        /         .two-column
-        /           %li.input
-        /             %label(for="contact-name") Your Name
-        /             %input(id="contact-name" name="contact-name" placeholder="First Last" type="text")
-
-        /           %li.input
-        /             %label(for="contact-email") Your Email Address
-        /             %input(id="contact-email" name="contact-email" placeholder="example@domain.com" type="text")
-
-        /         .one-column
-        /           %li.input
-        /             %textarea(name="contact-message" placeholder="Your message")
-
-        /       %ol.actions
-
-        %p.copy
-          Copyright
-          = link_to 'Unlock Her Freedom', '/'
-          &copy; #{Date.today.year}
-          &ndash; All Rights Reserved.
-
+      = render 'partials/header'
+      %section#content{ class: @content_class }= yield
+      = render 'partials/footer'
       #darknessification
 

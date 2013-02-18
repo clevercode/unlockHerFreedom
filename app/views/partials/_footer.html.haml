@@ -1,0 +1,37 @@
+%footer
+  %section.double
+    %article
+      %h1 Make a Donation
+      = semantic_form_for Payment.new do |f|
+        = f.inputs do
+          .two-column
+            = f.input :email, hint: 'required', placeholder: 'name@example.com'
+            = f.input :amount, as: :string, hint: 'required', placeholder: '$20.00'
+
+        = f.actions do
+          = f.action :submit, label: 'Continue'
+
+    %article
+      %h1 Contact Us
+      %form
+        %ol.inputs
+          .two-column
+            %li.input
+              %label(for="contact-name") Your Name
+              %input(id="contact-name" name="contact-name" placeholder="First Last" type="text")
+
+            %li.input
+              %label(for="contact-email") Your Email Address
+              %input(id="contact-email" name="contact-email" placeholder="example@domain.com" type="text")
+
+          .one-column
+            %li.input
+              %textarea(name="contact-message" placeholder="Your message")
+
+        %ol.actions
+
+  %p.copy
+    Copyright
+    = link_to 'Unlock Her Freedom', root_path
+    &copy; #{Date.today.year}
+    &ndash; All Rights Reserved.

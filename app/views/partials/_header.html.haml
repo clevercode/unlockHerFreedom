@@ -1,0 +1,10 @@
+%header
+  %h1= link_to 'Unlock Her Freedom', root_path
+
+  %nav
+    %ul
+      %li= link_to_unless_current 'Home', root_path
+      %li= link_to_unless_current 'Who We Are', who_path
+      %li= link_to_unless_current 'What We Do', what_path
+      %li= link_to_unless_current 'Why We Fight', why_path
+      %li= link_to_unless_current 'Get Involved', involved_path
