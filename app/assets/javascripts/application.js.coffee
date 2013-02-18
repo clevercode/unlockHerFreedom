@@ -14,9 +14,11 @@ jQuery ->
       $item.addClass 'alone'
 
   # Handles flash notices
-  $('.notice').on 'click', ->
-    $notice = $ event.currentTarget
-    $notice.fadeOut 200, -> $notice.remove()
+  $notices = $('.notice, .alert')
+  if $notices.length
+    setTimeout =>
+      $notices.css top: -$notices.outerHeight()
+    , 5000
 
   # Grabs our public API key from the meta tag
   Stripe.setPublishableKey $('meta[name="stripe-key"]').attr 'content'
