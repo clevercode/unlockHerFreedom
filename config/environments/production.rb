@@ -65,6 +65,14 @@ Unlockherfreedom::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
+  # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
+  config.force_ssl = true
+
+  config.middleware.insert_before("Rack::SSL", Rack::Rewrite) do
+    default_host = ENV["DEFAULT_HOST"]
+    r301 %r{.*}, "https://#{default_host}$&", :if => ->(rack_env) { rack_env['SERVER_NAME'] != default_host }
+  end
+
   # Stripe API Secret Key
   Stripe.api_key = 'sk_live_GiOTlrgb9Rwj6HZC4QX79v68'
 
