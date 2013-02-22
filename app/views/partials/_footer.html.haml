@@ -1,5 +1,15 @@
 %footer
   %section.double
+    %article
+      %h1 Make a Donation
+      = semantic_form_for Payment.new do |f|
+        = f.inputs do
+          .two-column
+            = f.input :email, hint: 'required', placeholder: 'name@example.com'
+            = f.input :amount, as: :string, hint: 'required', placeholder: '$20.00'
+
+        = f.actions do
+          = f.action :submit, label: 'Continue'
 
     %article
       %h1 Contact Us

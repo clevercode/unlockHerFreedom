@@ -1,6 +1,8 @@
 #= require jquery
 #= require jquery_ujs
 #= require spin
+#= require stripe.checkout
+#= require underscore.min
 #= require_tree .
 
 String.prototype.splice = (index, rem, s) ->
