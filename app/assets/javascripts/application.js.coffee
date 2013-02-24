@@ -118,7 +118,7 @@ app =
       description: "Donation (#{@form.find('#amount').val()})"
       panelLabel: 'Donate'
       token: $.proxy @, '_handleStripeResponse'
-      image: '/128x128.png'
+      image: '/assets/logo-stripe.jpg'
 
   _handleStripeResponse: (response) ->
     newFields = """
