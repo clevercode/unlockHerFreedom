@@ -20,9 +20,12 @@ jQuery ->
   if $notices.length
     setTimeout =>
       $notices.css top: -$notices.outerHeight()
+      setTimeout =>
+        $notices.remove()
+      , 300
     , 5000
 
-  # Grabs our public API key from the meta tag
+  # Grabs our API key from the meta tag
   Stripe.setPublishableKey $('meta[name="stripe-key"]').attr 'content'
   app.setupForms()
 
