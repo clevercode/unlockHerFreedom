@@ -1,3 +1,18 @@
+@media screen and (max-width: 1000px)
+  header nav
+    float: none
+    width: 100%
+    overflow: hidden
+
+    li
+      width: 20%
+
+    li a, li.alone
+      padding: 2em 1em
+      +ellipsize
+      line-height: 1.5em
+      text-align: center
+
 @media screen and (max-width: 480px)
   body
     +box-shadow(transparentize($brown, 0.25) 0 0 100px 0 inset)
@@ -14,20 +29,21 @@
 
     nav
       width: 100%
-      height: auto
 
       li
-        // width: 100%
-        height: auto
-        padding: 0 5px 5px
+        width: 100%
 
-        a
-          +buttonify()
-          width: 100%
-          height: auto
-          margin: 0
-          line-height: normal
-          text-align: center
+      li.alone
+        display: none
+
+      li a
+        +buttonify()
+        width: 100%
+        height: auto
+        margin: 0
+        padding: 0.5em 1em
+        line-height: normale
+        text-align: center
 
   #gallery
     display: none
