@@ -6,7 +6,11 @@
         = f.inputs do
           .two-column
             = f.input :email, hint: 'required', placeholder: 'name@example.com'
-            = f.input :amount, as: :string, hint: 'required', placeholder: '$20.00'
+            %li.amount.input.required#amount_input
+              %label{ for: 'amount'} amount
+              %input{ id: 'amount', maxlength: '255', name: 'amount', placeholder: '$20.00', type: 'text' }
+              %p.inline-hints ​required​
+            = f.input :amount, as: :hidden
 
         = f.actions do
           = f.action :submit, label: 'Continue'

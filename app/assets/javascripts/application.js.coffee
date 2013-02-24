@@ -70,7 +70,7 @@ app =
 
   _checkDonationFields: ->
     errors = undefined
-    for input in @form.find '#payment_amount, #payment_email'
+    for input in @form.find '#amount, #payment_email'
       $input = $(input).removeClass 'error'
       if $input.val().length < 1
         @_throwError $input
@@ -79,9 +79,9 @@ app =
 
     # If all inputs have something in them
     unless errors?
-      $amount = @form.find '#payment_amount'
-      amount = $amount.val().replace '$', ''
-      amount = amount.replace /,/g, ''
+      $amount = @form.find '#amount'
+      amount  = $amount.val().replace '$', ''
+      amount  = amount.replace /,/g, ''
 
       # If it's a valid currency entry
       if /[0-9]+\.[0-9][0-9](?:[^0-9]|$)/.test amount
@@ -99,7 +99,7 @@ app =
 
         # If it's an acceptable, valid amount, store it on the input
         else
-          $amount.attr 'data-value', amount
+          @form.find('#payment_amount').attr 'value', amount
 
       # If it's an invalid amount
       else
@@ -110,11 +110,12 @@ app =
     @_showStripeForm() unless errors?
 
   _showStripeForm: ->
+    @form.find('input[type=submit]').attr 'disabled', false
     StripeCheckout.open
       key: $('meta[name="stripe-key"]').attr 'content'
-      amount: @form.find('#payment_amount').data 'value'
+      amount: @form.find('#payment_amount').val()
       name: 'Unlock Her Freedom'
-      description: "Donation (#{@form.find('#payment_amount').val()})"
+      description: "Donation (#{@form.find('#amount').val()})"
       panelLabel: 'Donate'
       token: $.proxy @, '_handleStripeResponse'
       image: '/128x128.png'
@@ -125,8 +126,6 @@ app =
       <input type="hidden" name="name" value="#{response.card.name}" />
     """
 
-    amount = @form.find('#payment_amount').data 'value'
-    @form.find('#payment_amount').attr 'value', amount
     @form.append newFields
     @form[0].submit()
 
