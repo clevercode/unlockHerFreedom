@@ -3,6 +3,9 @@
 #= require spin
 #= require stripe.checkout
 #= require underscore.min
+#= require jquery.event.move
+#= require jquery.event.swipe
+#= require unslider
 #= require_tree .
 
 String.prototype.splice = (index, rem, s) ->

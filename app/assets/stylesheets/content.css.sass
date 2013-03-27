@@ -5,20 +5,48 @@
   +box-shadow(none)
 
   #gallery
+    position: relative
     height: 57em
     margin: 0 0 4em
-    +bottom-border()
     +box-shadow(rgba(0,0,0,0.75) 0 0 25px)
+    overflow: auto
 
     ul
+      width: 300%
       height: 100%
 
       li
+        float: left
+        width: 33.333333333%
         height: 100%
         display: block
-        background: image-url('gallery/01.jpg') no-repeat left center
+        background: none no-repeat center center
         background-size: cover
         border: 10px solid #ebebeb
+  
+    .dots
+      position: absolute
+      left: 0
+      right: 0
+      bottom: 20px
+      text-align: center
+
+      li
+        width: 10px
+        height: 10px
+        display: inline-block
+        margin: 0 4px
+        border: 2px solid #fff
+        +border-radius(6px)
+        cursor: pointer
+        +filter(drop-shadow(0 1px 2px rgba(0,0,0,.3)))
+        opacity: .4
+        +transition(background .5s, opacity .5s)
+        text-indent: -999em
+
+        &.active
+          background: #fff
+          opacity: 1
 
   h1.mantra
     margin: 0 0 0.8em
@@ -66,15 +94,15 @@ section
       list-style-position: outside
       list-style-type: square
 
-      &.inline-links a
-        float: none
-        display: inline-block
-        margin: 0
-        padding: 2px 4px
-        font-size: 1em
-        font-weight: normal
-        text-transform: none
-        text-decoration: underline
+    .inline-links a
+      float: none
+      display: inline-block
+      margin: 0
+      padding: 2px 4px
+      font-size: 1em
+      font-weight: normal
+      text-transform: none
+      text-decoration: underline
 
     p, li
       font-weight: 100
