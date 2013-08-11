@@ -1,0 +1,29 @@
+body.devise
+  section
+    width: 50%
+    margin: 0 auto
+    padding: 0
+    +box-shadow(none)
+    border: 0
+
+    h1
+      margin-bottom: 0.5em
+      color: #a16c37
+      font-size: 2em
+      font-weight: bold
+      text-transform: uppercase
+
+  .devise-links
+    margin-top: 1em
+    font-size: 1.4em
+
+    a
+      +single-transition(background, 200ms, ease)
+      font-weight: bold
+
+      &:hover
+        background: $highlight
+
+@media screen and (max-width: 480px)
+  body.devise section
+    width: 100%

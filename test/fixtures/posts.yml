@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  content: MyText
+  has_payment: false
+  payment_title: MyString
+  payment_description: MyText
+  admin_id: 
+
+two:
+  title: MyString
+  content: MyText
+  has_payment: false
+  payment_title: MyString
+  payment_description: MyText
+  admin_id: 

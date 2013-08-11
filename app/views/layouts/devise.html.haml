@@ -4,7 +4,7 @@
     %title #{@title} - Unlock Her Freedom
     = stylesheet_link_tag 'application'
     = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Lora:400,400italic'
-    = javascript_include_tag 'https://js.stripe.com/v1/', 'application'
+    = javascript_include_tag 'application'
     = csrf_meta_tags
     %link{ rel: 'icon', type: 'image/png', href: '/assets/favicon.png' }
     %meta{ name: 'stripe-key', content: ENV['STRIPE_PUBLIC_KEY'] }
@@ -20,18 +20,15 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
-  %body
+  %body.devise
     - if flash[:alert]
       .flash.alert= flash[:alert]
 
     - if flash[:notice]
       .flash.notice= flash[:notice]
 
-    = render 'partials/control_panel'
-
     .wrapper
-      = render 'partials/header'
-      %section#content{ class: @content_class }= yield
-      = render 'partials/footer'
-      #darknessification
+      %header
+        %h1= link_to 'Unlock Her Freedom', root_path
 
+      = yield

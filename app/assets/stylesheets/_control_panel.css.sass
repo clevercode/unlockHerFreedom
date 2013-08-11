@@ -1,0 +1,15 @@
+.control-panel
+  padding: 0.75em 1em
+  +box-shadow(rgba(255,255,255,0.2) 0 -1px 0 0 inset, rgba(0,0,0,0.75) 0 1px 15px)
+  background: rgba(0, 0, 0, 0.5)
+  border-bottom: 1px solid black
+  font-size: 1.3em
+
+  a
+    +button($green)
+    float: left
+    display: block
+
+    &.sign-out
+      +button($highlight)
+      float: right

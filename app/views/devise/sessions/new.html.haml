@@ -1,15 +1,18 @@
-%h2 Sign in
+- @title = 'Sign In'
 
-= semantic_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  = f.inputs do
-    .two-column
-      = f.input :email, autofocus: true
-      = f.input :password
+%section
+  %h1 Sign in
 
-    - if devise_mapping.rememberable?
-      = f.input :remember_me, as: :boolean
+  = semantic_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    = f.inputs do
+      .one-column
+        = f.input :email, autofocus: true
+        = f.input :password
 
-  = f.actions do
-    = f.action :submit, label: 'Sign in'
+      - if devise_mapping.rememberable?
+        = f.input :remember_me, as: :boolean
 
-= render 'devise/shared/links'
+    = f.actions do
+      = f.action :submit, label: 'Sign in'
+
+  = render 'devise/shared/links'

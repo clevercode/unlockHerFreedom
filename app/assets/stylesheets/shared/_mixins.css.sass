@@ -1,3 +1,10 @@
+=font-smoothing()
+  -webkit-font-smoothing: antialiased
+  -moz-font-smoothing: antialiased
+  -ms-font-smoothing: antialiased
+  -o-font-smoothing: antialiased
+  font-smoothing: antialiased
+
 =bottom-border
   border-bottom: 1px solid #000
   +box-shadow(rgba(255,255,255,0.15) 0 1px 0)
@@ -46,3 +53,24 @@
   &:-ms-input-placeholder
     font-family: Georgia
     font-style: italic
+
+=button($color)
+  padding: 0.5em 1em
+  +background(linear-gradient($color, shade($color, 15%)))
+  border: 1px solid rgba(0,0,0,0.85)
+  +border-radius(5px)
+  +box-shadow(rgba(255,255,255,0.05) 1px 1px 0, rgba(255,255,255,0.3) 1px 1px 0 0 inset)
+  color: white
+  cursor: pointer
+  font-size: 1em
+  font-weight: bold
+  text-shadow: rgba(0,0,0,0.25) -1px -1px 0
+
+  &:hover, &:focus
+    +background(linear-gradient(tint($color, 10%), tint(shade($color, 15%), 3%)))
+    outline: none
+
+  &:active
+    top: 1px
+    position: relative
+    +box-shadow(rgba(0,0,0,0.25) 0 0 5px 1px inset, rgba(255,255,255,0.05) 1px 1px 0)

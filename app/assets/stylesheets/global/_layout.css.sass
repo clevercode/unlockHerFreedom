@@ -1,5 +1,6 @@
 *
   +box-sizing(border-box)
+  +font-smoothing()
 
 html
   height: 100%
@@ -55,11 +56,12 @@ body
     z-index: 5
     position: fixed
     padding: 0.75em 1em
+    +box-shadow(rgba(255,255,255,0.5) 0 -1px 0 0 inset, rgba(0,0,0,0.75) 0 1px 15px)
+    +single-transition(top, 300ms, ease-out)
     background: $green
     border-bottom: 1px solid rgba(0,0,0,0.85)
-    +box-shadow(rgba(255,255,255,0.5) 0 -1px 0 0 inset, rgba(0,0,0,0.75) 0 1px 15px)
-    font-size: 1.3em
-    +single-transition(top, 300ms, ease-out)
+    font-size: 1.4em
+    font-weight: bold
 
     &.alert
       background: $highlight

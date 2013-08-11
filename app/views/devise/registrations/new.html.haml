@@ -1,14 +1,18 @@
-%h2 Sign up
+- @title = 'Sign up'
 
-= semantic_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = devise_error_messages!
-  = f.inputs do
-    .three-column
-      = f.input :email, placeholder: 'example@unlockherfreedom.com'
-      = f.input :password
-      = f.input :password_confirmation
+%section
+  %h1 Sign up
 
-  = f.actions do
-    = f.action :submit, label: 'Sign up'
+  = semantic_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = devise_error_messages!
+    = f.inputs do
+      .one-column
+        = f.input :name, label: 'Bilbo Baggins'
+        = f.input :email, placeholder: 'example@unlockherfreedom.com'
+        = f.input :password
+        = f.input :password_confirmation
 
-= render 'devise/shared/links'
+    = f.actions do
+      = f.action :submit, label: 'Sign up'
+
+  = render 'devise/shared/links'

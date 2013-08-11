@@ -1,5 +1,8 @@
 Unlockherfreedom::Application.routes.draw do
   
+  resources :posts
+
+
   devise_for :admins
 
   resources :payments

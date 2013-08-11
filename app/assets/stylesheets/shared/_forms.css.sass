@@ -45,7 +45,7 @@ form
       input, button
         float: right
 
-    .inline-hints
+    .inline-hints, .inline-errors
       display: none
       color: red
       font-size: 1em
@@ -74,22 +74,17 @@ form
         +box-shadow(red 0 0 3px)
 
     input[type=submit], .stripe-button
-      padding: 0.5em 1em
-      +background(linear-gradient($highlight, shade($highlight, 15%)))
-      border: 1px solid rgba(0,0,0,0.85)
-      +border-radius(5px)
-      +box-shadow(rgba(255,255,255,0.05) 1px 1px 0, rgba(255,255,255,0.3) 1px 1px 0 0 inset)
-      color: white
-      cursor: pointer
-      font-size: 1em
-      font-weight: normal
-      text-shadow: rgba(0,0,0,0.4) -1px -1px 0
+      +button($highlight)
 
-      &:hover, &:focus
-        +background(linear-gradient(tint($highlight, 10%), tint(shade($highlight, 15%), 3%)))
-        outline: none
+  #error_explanation
+    display: block
 
-      &:active
-        top: 1px
-        position: relative
-        +box-shadow(rgba(0,0,0,0.25) 0 0 5px 1px inset, rgba(255,255,255,0.05) 1px 1px 0)
+    h2
+      display: none
+
+    ul
+      list-style-position: inside
+      list-style-type: square
+
+      li
+        list-style: inherit !important

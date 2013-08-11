@@ -1,0 +1,19 @@
+- @title = 'Update admin'
+
+%section
+  %h1 Edit #{resource_name.to_s.humanize}
+
+  = semantic_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+    = devise_error_messages!
+    = f.inputs do
+      .one-column
+        = f.input :name, label: 'Your name'
+        = f.input :email, autofocus: true
+        = f.input :password, label: 'Password (leave blank if you don\'t want to change it)'
+        = f.input :password_confirmation
+        = f.input :current_password, label: 'Current password (we need your current password to confirm your changes)'
+
+    = f.actions do
+      = f.action :submit, label: 'Update'
+
+  .devise-links= link_to "Back", :back

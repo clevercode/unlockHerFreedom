@@ -1,0 +1,29 @@
+%h1 Listing posts
+
+%table
+  %tr
+    %th Title
+    %th Content
+    %th Has payment
+    %th Payment title
+    %th Payment description
+    %th Admin
+    %th
+    %th
+    %th
+
+  - @posts.each do |post|
+    %tr
+      %td= post.title
+      %td= post.content
+      %td= post.has_payment
+      %td= post.payment_title
+      %td= post.payment_description
+      %td= post.admin_id
+      %td= link_to 'Show', post
+      %td= link_to 'Edit', edit_post_path(post)
+      %td= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Post', new_post_path

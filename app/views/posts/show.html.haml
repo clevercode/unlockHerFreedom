@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @post.title
+%p
+  %b Content:
+  = @post.content
+%p
+  %b Has payment:
+  = @post.has_payment
+%p
+  %b Payment title:
+  = @post.payment_title
+%p
+  %b Payment description:
+  = @post.payment_description
+%p
+  %b Admin:
+  = @post.admin_id
+
+= link_to 'Edit', edit_post_path(@post)
+\|
+= link_to 'Back', posts_path
