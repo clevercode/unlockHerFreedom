@@ -13,14 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20130218034745) do
 
-  create_table "conversations", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "message"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "messages", :force => true do |t|
     t.string   "messenger_name"
     t.string   "messenger_email"
