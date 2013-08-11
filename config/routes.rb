@@ -1,5 +1,7 @@
 Unlockherfreedom::Application.routes.draw do
   
+  devise_for :admins
+
   resources :payments
   resources :messages
 
@@ -10,6 +12,8 @@ Unlockherfreedom::Application.routes.draw do
   match 'donate' => 'pages#donate'
   match 'involved' => 'pages#involved'
 
+  devise_scope :admin do
+    get 'sign-in' => 'devise/sessions#new', as: 'sign_in'
+  end
+
 end
-
-
