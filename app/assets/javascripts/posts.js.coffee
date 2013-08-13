@@ -1,3 +1,21 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+window.posts =
+
+  initialize: ->
+    @view = $ '#content.posts'
+    @attachEventListeners()
+
+  on: (event, target, handler) ->
+    @view.on event, target, $.proxy this, handler
+
+  attachEventListeners: ->
+    @on 'change', 'input:checkbox', '_onCheckboxChange'
+
+  # event handlers
+
+  _onCheckboxChange: (event) ->
+    $paymentFields = @view.find 'form .disclosure'
+    switch $(event.currentTarget).is ':checked'
+      when on then $paymentFields.show()
+      else $paymentFields.hide()
+
+$ -> posts.initialize()
