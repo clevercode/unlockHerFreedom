@@ -1,0 +1,22 @@
+.posts
+
+  h1
+    margin-bottom: 0.5em
+    color: #a16c37
+    font-size: 2em
+    font-weight: bold
+    text-transform: uppercase
+
+  form
+    .disclosure
+      display: none
+
+    + a
+      display: inline-block
+      margin-top: 1em
+      font-size: 1.4em
+      +single-transition(background, 200ms, ease)
+      font-weight: bold
+
+      &:hover
+        background: $highlight
