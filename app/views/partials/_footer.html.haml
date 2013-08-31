@@ -2,7 +2,7 @@
   %section.double
     %article
       %h1 Make a Donation
-      = semantic_form_for Payment.new do |f|
+      = semantic_form_for Payment.new, html: { class: 'donation' } do |f|
         = f.inputs do
           .two-column
             = f.input :email, hint: 'required', placeholder: 'name@example.com'
