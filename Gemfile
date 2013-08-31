@@ -23,3 +23,4 @@ gem 'formtastic',   '~> 2.2.1' # Semantic Form Helper
 gem 'rack-rewrite'             # Rewrite urls to default url
 gem 'stripe'
 gem 'devise'
+gem 'money'
