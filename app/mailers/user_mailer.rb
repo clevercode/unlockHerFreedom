@@ -5,4 +5,15 @@ class UserMailer < ActionMailer::Base
     @payment = payment
     mail(:to => payment.email, :subject => "Thank you for your donation.")
   end
+
+  def fundraiser_email(payment, guests, turns)
+    @payment = payment
+    @guests  = guests
+    @turns   = turns
+    mail(
+      :from => 'UHF Events <events@unlockherfreedom.com>',
+      :to => "#{payment.name} <#{payment.email}>",
+      :subject => "Thank you for your contribution."
+    )
+  end
 end

@@ -6,22 +6,32 @@
       body {
         margin: 0;
         padding: 5px 20px;
-        background: #f8f8fc;
-        border: 20px solid white;
-        font: 14px/1.5 'Helvetica Neue', Helvetica, Arial, Verana, sans-serif;
+        background: white;
+        border: 4px dashed #eee;
+        color: #333;
+        font: 16px/1.5 'Helvetica Neue', Helvetica, Arial, Verana, sans-serif;
       }
 
-      p.name {
-        font-size: 15px;
+      .wrapper {
+        width: 75%;
+        max-width: 600px;
+        margin: 2em auto;
+      }
+
+      .logo img {
+        width: 100px;
+        height: 35px;
       }
 
   %body
-    %p.name #{@payment.name},
-    %p
-      Thank you for your donation! You can use this email as a reciept for your
-      tax-deductible donation. It is with your help that we are able to be the
-      voice for those who can’t. We couldn’t do what we do without supporters
-      like you. So again, thank you.
-    
-    %br
-    %p It is for freedom...
+    .wrapper
+      %p #{@payment.name},
+      %p
+        Thank you for your donation of $#{@payment.formatted_amount}. You can use this email as a reciept for your
+        tax-deductible donation. It is with your help that we are able to be the
+        voice for those who can’t. We couldn’t do what we do without supporters
+        like you. So again, thank you.
+      
+      %br
+      %p It is for freedom...
+      .logo= image_tag 'https://unlockherfreedom/assets/logo-email.png', alt: 'UHF Logo'

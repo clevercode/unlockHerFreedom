@@ -77,8 +77,25 @@
       > article
         width: 100%
 
+    &.news > article
+      .location
+        width: 100%
+
+        a
+          text-align: left
+
+      form
+        width: 100%
+        margin-top: 2em
+
   footer p.copy
     padding-top: 2em
+
+  form ol div[class*=column]
+    &[class=two-column], &[class=three-column]
+      li
+        width: 100%
+        margin-right: 0
 
 @media screen and (max-width: 320px)
   header h1

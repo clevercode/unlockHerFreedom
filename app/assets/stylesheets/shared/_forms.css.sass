@@ -9,7 +9,7 @@ form
       float: left
       width: 100%
 
-      input[type=text], input[type=email], input[type=password], label, textarea
+      input[type=text], input[type=email], input[type=number], input[type=password], label, textarea
         width: 100%
         display: block
 
@@ -88,3 +88,30 @@ form
 
       li
         list-style: inherit !important
+
+  &.event
+    .actions
+      position: relative
+
+      .input
+        float: left
+        width: 60%
+        margin: 0
+
+    input
+      &#turns
+        float: none
+        width: 10%
+        min-width: 3em
+
+      &.error
+        margin-bottom: 2em
+
+    fieldset.inputs
+      position: relative
+
+    .inline-hints
+      top: 5em
+      left: 0
+      right: 0
+      position: absolute

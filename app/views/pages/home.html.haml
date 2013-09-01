@@ -12,10 +12,48 @@
   The more knowledgeable we become, the more threat we are to those hiding in
   plain sight.
 
+#night_for_freedom
 %section.news
   %article
-    %h1 Latest News
-    %p Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI. Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas. 
+    %h1 A Night For Freedom
+    %p
+      Join us for a night of speaking, food, music and fun, while meeting the
+      founders of Unlock Her Freedom and learning what you can do to help. All
+      donations are tax deductible. Sign up now!
+    %p
+      The event is going to take place at Vesica Piscis Chapel, on November 22,
+      2013 at 7:00pm. It is $25 per person, plus $20 per turn at the gift card
+      tree (you get to pick your card!)
+
+    .location
+      .image{ style: 'background-image: url(/assets/night_for_freedom.png)' }
+      %p 2188 Oklahoma 167
+      %p Catoosa, OK 74015
+      %p= link_to 'Get Directions', 'http://cloud.zdn.io/R0Zo', target: '_blank'
+      %p= link_to 'Add this event to your calendar', '/assets/night_for_freedom.ics'
+
+    = semantic_form_for Payment.new, html: { class: 'event' } do |f|
+      = f.inputs do
+        .three-column
+          = f.input :email, hint: '.', input_html: { placeholder: 'name@example.com' }
+          %li.input.required
+            %label{ for: 'amount'} Amount*
+            %input{ id: 'amount', maxlength: '255', name: 'amount', placeholder: '$25.00', type: 'text', value: '$25.00' }
+            %p.inline-hints ​required​
+          %li.input.required
+            %label{ for: 'guests' } Guests*
+            %input#guests{ type: 'number', name: 'guests', value: '1', min: '1' }
+            %p.inline-hints Invalid number
+
+        = f.input :amount, as: :hidden
+        %input{ name: 'form', type: 'hidden', value: 'fundraiser' }
+
+      = f.actions do
+        %li.input
+          %input#turns{ type: 'number', name: 'turns', value: '0', min: '0' }
+          %label{ for: 'turns' } Turn(s) at the gift card tree
+
+        = f.action :submit, label: 'Continue'
 
 %section.double
   %article

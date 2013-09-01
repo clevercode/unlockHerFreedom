@@ -54,7 +54,11 @@ class PaymentsController < ApplicationController
 
     if charge.id
       # Tell the UserMailer to send a confirmation email after save
-      UserMailer.confirmation_email(@payment).deliver
+      if params[:form] == 'fundraiser'
+        UserMailer.fundraiser_email(@payment, params[:guests], params[:turns]).deliver
+      else
+        UserMailer.confirmation_email(@payment).deliver
+      end
 
       redirect_to root_path, flash: { notice: 'Thank you for your donation! You\'ll recieve an email confirmation shortly.' }
     else

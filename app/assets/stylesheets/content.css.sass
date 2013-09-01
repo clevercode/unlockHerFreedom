@@ -73,6 +73,8 @@ section
     display: block
 
   article
+    overflow: hidden
+
     &.websites ul li
       list-style: none
 
@@ -114,6 +116,35 @@ section
 section.news > article
   font-size: 1.4em
 
+  > p
+    margin-bottom: 1em
+
+  .location
+    float: left
+    width: 47.5%
+    font-size: 0.7em
+    overflow: hidden
+
+    .image
+      float: left
+      width: 25%
+      height: 10em
+      margin-right: 1em
+      background:
+        repeat: none
+        size: cover
+      border: 0.5em solid #ebebeb
+
+    a
+      float: none
+      margin: 0
+      padding: 0
+
+  form
+    float: right
+    width: 47.5%
+    font-size: 0.7em
+
 section.double > article
   float: left
   width: 47.5%
@@ -129,3 +160,7 @@ section.quad > article
 
   &:nth-of-type(4n)
     margin-right: 0
+
+#night_for_freedom
+  top: -2em
+  position: relative

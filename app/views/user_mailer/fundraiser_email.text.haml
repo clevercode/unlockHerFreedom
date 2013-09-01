@@ -1,0 +1,19 @@
+#{@payment.name},
+
+
+- if @turns.to_i > 0
+  Thank you for your contribution of $#{@payment.formatted_amount}. You have purchased #{@guests} #{"ticket".pluralize(@guests.to_i)}, and #{@turns} #{"turn".pluralize(@turns.to_i)} at the gift card tree!
+- else
+  Thank you for your contribution of $#{@payment.formatted_amount}. You have purchased #{@guests} #{"ticket".pluralize(@guests.to_i)}!
+
+
+
+Be sure to print out this email and bring it with you to the event. The event will be held at 7:00 PM, on Friday, November 22nd. Directions to Vesica Piscis Chapel can be found on the UHF website.
+
+
+
+You can use this email as a reciept for your tax-deductible contribution. It is with your help that we are able to be the voice for those who can’t. We couldn’t do what we do without supporters like you. So again, thank you.
+
+
+
+It is for freedom...
